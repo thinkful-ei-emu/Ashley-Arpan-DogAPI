@@ -35,7 +35,9 @@ const createTemplate = function(image){
 function handleForm() {
     $('#dog-image-form').submit(event => {
         event.preventDefault();        
-        let input = $(event.currentTarget).find('#dog-image-search').val();        
+        let input = $(event.currentTarget).find('#dog-image-search').val();  
+        if( input > 50){
+            alert ("Pick another number between 1-50")};   
         $('.dog-image-search').val("");
         console.log("handleForm ran");
         getImage(input);
