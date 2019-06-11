@@ -44,7 +44,7 @@ function handleForm() {
         event.preventDefault();        
         let input = $(event.currentTarget).find('#dog-image-search').val();  
         console.log(input);  
-        $('.dog-image-search').val("");
+        $('#dog-image-form :input').val("");
         //console.log("handleForm ran");
         getImage(input);
     });

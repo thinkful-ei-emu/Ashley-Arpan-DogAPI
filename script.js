@@ -14,8 +14,8 @@ function getImage(input) {
 const extractData = function (jsonData){    
     console.log(jsonData);
     jsonData.message.forEach(image => {       
-        console.log("extractData ran");
-        $(".image-results").append(createTemplate(image));
+        console.log("extractData ran");                
+        $(".image-results").append(createTemplate(image));        
     });
     
 };
@@ -36,10 +36,11 @@ function handleForm() {
     $('#dog-image-form').submit(event => {
         event.preventDefault();        
         let input = $(event.currentTarget).find('#dog-image-search').val();  
-        if( input > 50){
+        if( input < 0 || input > 50){
             alert ("Pick another number between 1-50")};   
-        $('.dog-image-search').val("");
+        $('#dog-image-form :input').val("");
         console.log("handleForm ran");
+        $(".image-results").empty(); 
         getImage(input);
     });
 };
