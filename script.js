@@ -36,12 +36,20 @@ function handleForm() {
     $('#dog-image-form').submit(event => {
         event.preventDefault();        
         let input = $(event.currentTarget).find('#dog-image-search').val();  
-        if( input < 0 || input > 50){
-            alert ("Pick another number between 1-50")};   
-        $('#dog-image-form :input').val("");
-        console.log("handleForm ran");
-        $(".image-results").empty(); 
-        getImage(input);
+        if( input > 0 && input <= 50){
+            $('#dog-image-form :input').val("");
+            console.log("handleForm ran");
+            $(".image-results").empty(); 
+            getImage(input);  
+        }
+        else {
+            alert ("Pick another number between 1-50");
+            $('#dog-image-form :input').val("");
+            $(".image-results").empty(); 
+        }   
+        
+        
+            
     });
 };
 
