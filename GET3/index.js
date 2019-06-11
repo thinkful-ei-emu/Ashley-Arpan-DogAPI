@@ -14,7 +14,7 @@ const extractData = function (jsonData){
     console.log(jsonData);
     if (jsonData.status === "error"){
         console.log("error is working");
-    $(".image-results").append(`
+    $(".image-results").empty().append(`
     <section> 
         <h2> Pick something else </h2>
     </section>`);
@@ -22,7 +22,7 @@ const extractData = function (jsonData){
     // jsonData.message.forEach(image => {       
          //console.log("extractData ran");
     else{
-        $(".image-results").append(createTemplate(jsonData.message));
+        $(".image-results").empty().append(createTemplate(jsonData.message));
     }
     
 };
