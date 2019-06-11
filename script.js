@@ -4,45 +4,42 @@ function getImage(input) {
     fetch(`https://dog.ceo/api/breeds/image/random/${input}`)
         .then(response => response.json())
         .then(jsonData => {
-            createTemplate(jsonData)})
-        .catch(error => alert ('Something went wrong. Try again later.'))
+            console.log("getImage ran");
+            extractData(jsonData);
+        })
+        .catch(error => console.error(error));
+
 }
 
-const extractData = function (jsonData){
-    jsonData.forEach(image => {
-        let {
-            message
-        } = image;
-    })
-    $(".image-results").append(createTemplate(message));
-}
-
-// function displayResults(jsonData) {
-//   let display = 
-//     `<section>
-//     <h2>Check out this dog!</h2>
-//     <img src="${jsonData}" class="result-img" alt="placeholder">
-//     </section>` 
+const extractData = function (jsonData){    
+    console.log(jsonData);
+    jsonData.message.forEach(image => {       
+        console.log("extractData ran");
+        $(".image-results").append(createTemplate(image));
+    });
     
-// }
+};
 
-const createTemplate = function(message){    
-       
-    let template = `<section>
+const createTemplate = function(image){    
+     
+    let template = 
+    `<section>
     <h2>Check out this dog!</h2>
-    <img src="${message}" class="result-img" alt="placeholder">
-    </section>`; 
-    
-}
+    <img src="${image}" class="result-img" alt="placeholder">            
+    </section>`;    
+    console.log(template);
+    return template;    
+};
 
 
 function handleForm() {
     $('#dog-image-form').submit(event => {
         event.preventDefault();        
-        let input = $('#dog-image-search').val();
+        let input = $(event.currentTarget).find('#dog-image-search').val();        
         $('.dog-image-search').val("");
+        console.log("handleForm ran");
         getImage(input);
     });
-}
+};
 
 $(handleForm);
